@@ -21,18 +21,18 @@ body{
     font-size: 12px;
     color: var(--color-white);
     background: var(--color-gradient);
-    background: url(assets/background.jpg) no-repeat center center fixed;
-    background-size: cover;
 }
 
-header, footer{
+.header, .footer{
     padding: 0.5rem 1rem;
     background-color: var(--color-main);
 }
 
 main {
+    display: flex;
     flex-grow: 1;
 }
+
 /* ************* Header************* */
 .nav{
     display: flex;
@@ -62,6 +62,75 @@ main {
 }
 
 /* ************* Home ************* */
+#home{
+    min-height: 100%;
+    background: url(assets/background.jpg) no-repeat center center fixed;
+    background-size: cover;
+    flex-grow: 1;
+}
+
+/* ************* Menu Bar ************* */
+.menuBar{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.menuBar > * {
+    margin-top: 0.5em;
+}
+
+.menuBar__showing{
+    align-self: flex-end;
+}
+
+/* ----- Filter -----*/
+.filter__comboBox, .menuBar__search{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: none;
+    width: 100%;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    color: var(--color-main);
+    font-family: var(--font-secondary);
+    border: 2px solid #eee;
+    box-shadow: 0em 0em 0.2em var(--color-main);
+}
+.filter__comboBox{
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-repeat: no-repeat;
+    background-position: right 15px top 1em, right 10px top 1em;
+    background-size: 5px 5px, 5px 5px;
+    cursor: pointer;
+}
+
+.filter__comboBox:hover, .menuBar__search:hover, .menuBar__search:focus{
+    border: 2px solid var(--color-main);
+}
+
+.filter__comboBox option[disabled]{
+    display: none;
+}
+
+.filter--icon{
+    display: flex;
+}
+
+.filter--icon .filter__comboBox{
+    flex-grow: 1;
+}
+
+.fas {
+    margin-left: 0.3em;
+    font-size: 2em;
+    user-select: none;
+    align-self: center;
+    color: var(--color-white);
+}
+
+/* ************* Films container ************* */
 .container{
     padding: 0rem 1rem;
 }
@@ -73,8 +142,10 @@ main {
     justify-items: center;
     row-gap: 1.875em;
     column-gap: 1em;
+    user-select: none;
 }
 
+/* -------- Film card -------- */
 .container__card{
     position: relative;
     width: 11.875em;
@@ -108,6 +179,29 @@ main {
     border-radius: 10px;
 }
 
+/* **************** Footer ************** */
+.footer{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer_link{
+    padding: 0em 0.3em;
+}
+
+.fab{
+    font-size: 2em;
+    user-select: none;
+    color: var(--color-white);
+}
+
+.fab:hover, .fab:visited{
+    color: var(--color-secondary);
+}
+
+
 /*
 queries para pc
 body{
@@ -117,3 +211,8 @@ font-size: 16px;
     padding: 0rem 4rem;
 }
 */
+
+#film, #people{
+    display: none;
+    flex-grow: 1;
+}

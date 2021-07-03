@@ -1,5 +1,79 @@
-import { sortData } from '../src/data.js';
+import { searchDataFilms, sortData, filterDataByDirectorProducer } from '../src/data.js';
 
+describe('search by film test', () => {
+  it('is a function', () => {
+    expect(typeof searchDataFilms).toBe('function');
+  });
+
+  it('should return the search result for the title search castle', () => {
+    const data = [
+      {
+        "title": "Kiki's Delivery Service",
+        "director": "Hayao Miyazaki",
+        "producer": "Hayao Miyazaki",
+      },
+      {
+        "title": "Castle in the Sky",
+        "director": "Hayao Miyazaki",
+        "producer": "Isao Takahata",
+      },
+      {
+        "title": "Only Yesterday",
+        "director": "Isao Takahata",
+        "producer": "Toshio Suzuki",
+      }
+    ];
+    const condition = 'castle';
+    const result = [
+      {
+        "title": "Castle in the Sky",
+        "director": "Hayao Miyazaki",
+        "producer": "Isao Takahata",
+      }
+    ];
+    expect(searchDataFilms(data,condition)).toEqual(result);
+  });
+});
+
+describe('filter by director or producer test', () => {
+  it('is a function', () => {
+    expect(typeof filterDataByDirectorProducer).toBe('function');
+  });
+
+  it('should return the result to director and producer Hayao Miyazaki.', () => {
+    const data = [
+      {
+        "title": "Kiki's Delivery Service",
+        "director": "Hayao Miyazaki",
+        "producer": "Hayao Miyazaki",
+      },
+      {
+        "title": "Castle in the Sky",
+        "director": "Hayao Miyazaki",
+        "producer": "Isao Takahata",
+      },
+      {
+        "title": "Only Yesterday",
+        "director": "Isao Takahata",
+        "producer": "Toshio Suzuki",
+      }
+    ];
+    const condition = 'Hayao Miyazaki';
+    const result = [
+      {
+        "title": "Kiki's Delivery Service",
+        "director": "Hayao Miyazaki",
+        "producer": "Hayao Miyazaki",
+      },
+      {
+        "title": "Castle in the Sky",
+        "director": "Hayao Miyazaki",
+        "producer": "Isao Takahata",
+      }
+    ];
+    expect(filterDataByDirectorProducer(data,condition)).toEqual(result);
+  });
+});
 
 describe('orderBy test', () => {
   it('is a function', () => {

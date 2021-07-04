@@ -27,7 +27,7 @@ function showDataFilms(films){
             container.className = 'container__card';
             container.innerHTML = `
                 <section class='card__title'>
-                    <h1>${film.title}</h1>
+                    ${film.title}
                 </section>
                 <img class='card__image' src='${film.poster}' alt='${film.title}' title='${film.title}' loading='lazy'>
             `;

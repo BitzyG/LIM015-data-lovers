@@ -52,14 +52,29 @@ main {
 
 .menu__dropdown{
     display: flex;
-    flex-direction: column;
     align-items: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    align-content: flex-end;
 }
 
 .menu__item{
-    padding: 0.5rem 0rem;
+    margin-left: 1rem;
+    text-decoration: none;
+    font-family: var(--font-main);
+    color: var(--font-main);
+    font-weight: 500;
 }
+
+.menu__item:hover{
+    background: var(--color-white);
+    border-radius: 10px;
+    color: var(--color-main);
+    transition: 0.5s;
+    text-align: center;
+    padding: 0.5rem;
+    }
 
 /* ************* Home ************* */
 #home{

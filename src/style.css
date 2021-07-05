@@ -46,8 +46,6 @@ main {
     align-content: center;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
-    top: 0em;
 }
 
 .nav__logo{
@@ -55,7 +53,11 @@ main {
 }
 
 .menu{
-    flex-grow: 1;
+    margin-left: 1rem;
+    text-decoration: none;
+    font-family: var(--font-main);
+    color: var(--color-white);
+    font-weight: 500;
 }
 
 .menu__dropdown{
@@ -160,13 +162,15 @@ main {
 }
 
 .container__films {
-    padding: 1rem 0rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(11.875em,1fr));
-    justify-items: center;
-    row-gap: 1.875em;
-    column-gap: 1em;
-    user-select: none;
+    bottom: 0;
+    text-align: center;
+    background: var(--color-main);
+    opacity: 0.9;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    padding: 0.3rem 0.5rem;
 }
 
 /* -------- Film card -------- */
@@ -226,6 +230,66 @@ main {
 .fab:hover, .fab:visited{
     color: var(--color-secondary);
 }
+
+#film, #people{
+    display: none;
+    flex-grow: 1;
+}
+
+@media (min-width: 768px) {
+    /* Menu Bar*/
+    .menuBar {
+        flex-flow: row wrap;
+        align-items: center;
+    }
+
+    .menuBar > * {
+        margin: 0.5rem 0.5rem 0.5rem 0rem;
+    }
+
+    .filter__comboBox, .menuBar__search{
+        width: inherit;
+    }
+
+    .menuBar__showing {
+        margin-right: 0;
+        align-self: inherit;
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+@media only screen and (min-width: 992px){
+    body{
+        font-size: 14px;
+    }
+    /*.menu__dropdown{
+        visibility: hidden;
+    }
+    .menu__dropdown.responsive{
+        visibility: visible;
+        display: flex;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-content: flex-end
+    }
+    .menu__item.responsive{
+        display: block;
+        list-style: none;
+    }*/
+    .menu__list{
+        list-style: none;
+    }
+
+    .header, .footer, .container{
+        padding: 1rem 4rem;
+    }
+}
+
+/* Queries para pc*/
 
 /*
 queries para pc

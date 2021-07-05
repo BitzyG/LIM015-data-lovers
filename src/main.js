@@ -68,6 +68,8 @@ menuBar.addEventListener("click", ()=> {
 })
 
 
+
+
 /*function showItem() {
     document.getElementById("list").className = "menu__item.responsive";
 }

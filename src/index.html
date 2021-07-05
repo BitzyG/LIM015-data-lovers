@@ -13,7 +13,7 @@
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/971ef92afb.js" crossorigin="anonymous"></script>
     <!-- Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <header class="header">
@@ -29,14 +29,16 @@
     <main>
       <section class="container" id="home">
         <section class="menuBar">
-            <input id="searchFilm" type="text" class="menuBar__search" placeholder="Search films">
+            <section class="search">
+              <input id="searchFilm" type="text" class="menuBar__search" placeholder="Search films">
+            </section>
             <section class="filter">
               <select id="filterByDirectorProducer" class="filter__comboBox">
                 <option value="all" disabled selected>Director/Producer</option>
                 <option value="all">All</option>
               </select>
             </section>
-            <section class="filter filter--icon">
+            <section class="filter">
               <select id="sortBy" class="filter__comboBox">
                 <option value="title" disabled selected>Order by</option>
                 <option value="title">Name</option>

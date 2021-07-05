@@ -103,7 +103,9 @@ main {
 }
 
 .menuBar__showing{
-    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5em;
 }
 
 /* ----- Filter -----*/
@@ -225,40 +227,45 @@ main {
     color: var(--color-secondary);
 }
 
+/*
+queries para pc
+body{
+font-size: 16px;
+}
+.container {
+    padding: 0rem 4rem;
+}
+*/
+
 #film, #people{
     display: none;
     flex-grow: 1;
 }
 
-@media (min-width: 768px) {
-    /* Menu Bar*/
-    .menuBar {
-        flex-flow: row wrap;
-        align-items: center;
+@media only screen and (min-width: 992px){
+    *{
+        font-size: 16px;
+        box-sizing: border-box;
+        column-gap: 0.5em;
     }
-
-    .menuBar > * {
-        margin: 0.5rem 0.5rem 0.5rem 0rem;
+    .menu__toggle{
+        display: none;
     }
-
-    .filter__comboBox, .menuBar__search{
-        width: inherit;
+    .menuBar{
+        flex-flow: row;
+        row-gap: 1rem;
     }
-
-    .menuBar__showing {
-        margin-right: 0;
-        align-self: inherit;
-        flex-grow: 1;
+    .filter__comboBox{
+        width: auto;
+    }
+    .menuBar__showing{
         display: flex;
-        justify-content: flex-end;
+        justify-self: flex-end;
     }
 }
 
-@media only screen and (min-width: 992px){
-    body{
-        font-size: 14px;
-    }
-    /*.menu__dropdown{
+@media only screen and (max-width: 992px){
+    .menu__dropdown{
         visibility: hidden;
     }
     .menu__dropdown.responsive{
@@ -273,24 +280,8 @@ main {
     .menu__item.responsive{
         display: block;
         list-style: none;
-    }*/
+    }
     .menu__list{
         list-style: none;
     }
-
-    .header, .footer, .container{
-        padding: 1rem 4rem;
-    }
 }
-
-/* Queries para pc*/
-
-/*
-queries para pc
-body{
-font-size: 16px;
-}
-.container {
-    padding: 0rem 4rem;
-}
-*/

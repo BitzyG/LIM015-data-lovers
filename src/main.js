@@ -9,6 +9,8 @@ const sortBy = document.querySelector("#sortBy");
 const orderData = document.getElementById("orderData");
 const counter = document.querySelector(".menuBar__showing");
 const filmsContainer = document.querySelector('.container__films');
+const menuBar = document.getElementById("menuBurguer")
+
 
 // Default variables
 let dataFilms = data.films;
@@ -55,6 +57,28 @@ orderData.addEventListener("click", () => {
     showDataFilms(dataFilms);
 });
 
+//Menu Toggle
+menuBar.addEventListener("click", ()=> {
+    let menuShow = document.getElementById("list").className
+    if(menuShow){
+        document.getElementById("list").className = "menu__item.responsive";
+    }/*if(menuShow){
+        document.getElementById("list").className = "menu__item";
+    }*/
+})
+
+
+
+
+/*function showItem() {
+    document.getElementById("list").className = "menu__item.responsive";
+}
+menuToggle.addEventListener("click", showItem)
+Esta función sólo funciona para mostrar, no oculta*/
+
+
+
+
 // Filter Director and Producer
 filterByDirectorProducer.addEventListener("change", ()=>{
     searchFilms.value = "";
@@ -88,6 +112,14 @@ searchFilms.addEventListener('keyup', ()=>{
     }else{
         console.log("No tiene locación");
     }
+
+let prueba = data.films.forEach(film=> {
+    film.people.forEach(person=>{
+        console.log(person.name)
+    })
+    }
+);
+console.log(prueba);
 */
 
 

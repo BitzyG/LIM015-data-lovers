@@ -18,7 +18,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     font-family: var(--font-main);
-    font-size: 12px;
+    font-size: 10px;
     color: var(--color-white);
     background: var(--color-gradient);
 }
@@ -246,7 +246,7 @@ main {
     }
 
     .filter__comboBox, .menuBar__search{
-        width: inherit;
+        min-width: 160px;
     }
 
     .menuBar__showing {
@@ -258,9 +258,9 @@ main {
     }
 }
 
-@media only screen and (min-width: 992px){
-    body{
-        font-size: 14px;
+@media (min-width: 992px){
+    body {
+        font-size: 12px;
     }
     /*.menu__dropdown{
         visibility: hidden;
@@ -285,7 +285,7 @@ main {
     .header, .footer, .container{
         padding: 1rem 4rem;
     }
-}
+}   
 
 /* Queries para pc*/
 
@@ -297,19 +297,8 @@ font-size: 16px;
 .container {
     padding: 0rem 4rem;
 }
-*/
 
-#film, #people{
-    display: none;
-    flex-grow: 1;
-}
-
-@media only screen and (min-width: 992px){
-    *{
-        font-size: 16px;
-        box-sizing: border-box;
-        column-gap: 0.5em;
-    }
+@media(min-width: 992px){
     .menu__toggle{
         display: none;
     }
@@ -326,7 +315,7 @@ font-size: 16px;
     }
 }
 
-@media only screen and (max-width: 992px){
+@media (min-width: 992px){
     .menu__dropdown{
         visibility: hidden;
     }
@@ -347,3 +336,4 @@ font-size: 16px;
         list-style: none;
     }
 }
+*/

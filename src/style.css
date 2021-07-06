@@ -18,7 +18,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     font-family: var(--font-main);
-    font-size: 12px;
+    font-size: 10px;
     color: var(--color-white);
     background: var(--color-gradient);
 }
@@ -257,6 +257,7 @@ main {
     #menuBurguer{
         display: none;
     }
+  
     /* Menu Bar*/
     .menuBar {
         flex-flow: row wrap;
@@ -268,7 +269,7 @@ main {
     }
 
     .filter__comboBox, .menuBar__search{
-        width: inherit;
+        min-width: 160px;
     }
 
     .menuBar__showing {
@@ -280,28 +281,10 @@ main {
     }
 }
 
-
-@media only screen and (min-width: 992px){
-    body{
-        font-size: 14px;
+@media (min-width: 992px){
+    body {
+        font-size: 12px;
     }
-    /*.menu__dropdown{
-        visibility: hidden;
-    }
-    .menu__dropdown.responsive{
-        visibility: visible;
-        display: flex;
-        align-items: center;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        align-content: flex-end
-    }
-    .menu__item.responsive{
-        display: block;
-        list-style: none;
-    }*/
-
     .header, .footer, .container{
         padding: 1rem 4rem;
     }

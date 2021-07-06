@@ -33,6 +33,7 @@ main {
     flex-grow: 1;
 }
 
+
 /* ************* Header************* */
 .header{
     position: sticky;
@@ -61,30 +62,35 @@ main {
 }
 
 .menu__dropdown{
-    display: flex;
-    align-items: center;
     list-style: none;
+    padding: 1rem 0rem 0rem;
+    width: 100%;
     margin: 0;
-    padding: 0;
-    align-content: flex-end;
+}
+.menu__list{
+    padding: 0.5rem 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+.menu__list:first-child{
+    border-top: 2px solid;
 }
 
-.menu__item{
-    margin-left: 1rem;
+.menu__item, .menu__item:visited{
     text-decoration: none;
     font-family: var(--font-main);
     color: var(--color-white);
     font-weight: 500;
-}
-
-.menu__item:hover{
-    background: var(--color-white);
-    border-radius: 10px;
-    color: var(--color-main);
-    transition: 0.5s;
-    text-align: center;
+    display: block;
+    margin: 0rem 0.5rem;
     padding: 0.5rem;
-    }
+    border-radius: 10px;
+}
+.menu__item:hover{
+    color: var(--color-main);
+    background: var(--color-white);
+}
 
 /* ************* Home ************* */
 #home{
@@ -138,6 +144,7 @@ main {
     background-position: right 15px top 0.8em, right 10px top 0.8em;
     background-size: 5px 5px, 5px 5px;
     cursor: pointer;
+    min-width: 160px;
 }
 
 .filter__comboBox:hover, .menuBar__search:hover, .menuBar__search:focus{
@@ -229,12 +236,27 @@ main {
     color: var(--color-secondary);
 }
 
-#film, #people{
-    display: none;
+#film, #allCharacters{
     flex-grow: 1;
 }
 
+.disable{
+    display: none;
+}
+
 @media (min-width: 768px) {
+    .menu__dropdown{
+        display: flex;
+        width: auto;
+        padding: 0;
+    }
+    .menu__list:first-child{
+        border-top: none;
+    }
+
+    #menuBurguer{
+        display: none;
+    }
     /* Menu Bar*/
     .menuBar {
         flex-flow: row wrap;
@@ -258,6 +280,7 @@ main {
     }
 }
 
+
 @media only screen and (min-width: 992px){
     body{
         font-size: 14px;
@@ -278,72 +301,8 @@ main {
         display: block;
         list-style: none;
     }*/
-    .menu__list{
-        list-style: none;
-    }
 
     .header, .footer, .container{
         padding: 1rem 4rem;
-    }
-}
-
-/* Queries para pc*/
-
-/*
-queries para pc
-body{
-font-size: 16px;
-}
-.container {
-    padding: 0rem 4rem;
-}
-*/
-
-#film, #people{
-    display: none;
-    flex-grow: 1;
-}
-
-@media only screen and (min-width: 992px){
-    *{
-        font-size: 16px;
-        box-sizing: border-box;
-        column-gap: 0.5em;
-    }
-    .menu__toggle{
-        display: none;
-    }
-    .menuBar{
-        flex-flow: row;
-        row-gap: 1rem;
-    }
-    .filter__comboBox{
-        width: auto;
-    }
-    .menuBar__showing{
-        display: flex;
-        justify-self: flex-end;
-    }
-}
-
-@media only screen and (max-width: 992px){
-    .menu__dropdown{
-        visibility: hidden;
-    }
-    .menu__dropdown.responsive{
-        visibility: visible;
-        display: flex;
-        align-items: center;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        align-content: flex-end
-    }
-    .menu__item.responsive{
-        display: block;
-        list-style: none;
-    }
-    .menu__list{
-        list-style: none;
     }
 }

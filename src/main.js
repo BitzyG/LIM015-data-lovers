@@ -2,6 +2,10 @@ import { searchDataFilms, sortData , filterDataByDirectorProducer } from './data
 // import data functions
 import data from './data/ghibli/ghibli.js';
 
+const home = document.getElementById("home");
+const movie = document.getElementById("film");
+const characters = document.getElementById("allCharacters");
+
 // Selectors DOM
 const searchFilms = document.getElementById('searchFilm');
 const filterByDirectorProducer = document.getElementById("filterByDirectorProducer");
@@ -9,7 +13,8 @@ const sortBy = document.querySelector("#sortBy");
 const orderData = document.getElementById("orderData");
 const counter = document.querySelector(".menuBar__showing");
 const filmsContainer = document.querySelector('.container__films');
-const menuBar = document.getElementById("menuBurguer")
+const menuBurguer = document.getElementById("menuBurguer");
+const menuDropdown = document.querySelector(".menu__dropdown");
 
 
 // Default variables
@@ -35,12 +40,23 @@ function showDataFilms(films){
             `;
             filmsContainer.appendChild(container);
             // Add modal
+            container.addEventListener("click", () => {
+                home.classList.add("disable");
+                movie.classList.remove("disable");
+                const filmInformation = document.querySelector(".container__generalInformation");
+                filmInformation.innerHTML = `
+                <section>${film.title}</section>
+                `;
+            });
         });
     }
     counter.innerHTML = `Showing ${films.length}`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    menuDropdown.classList.toggle("disable");
+    movie.classList.add("disable");
+    characters.classList.add("disable");
     showDataFilms(sortData(dataFilms, sortBy.value, sortOrder));
     addFilterByDirectorProducer();
 });
@@ -58,26 +74,10 @@ orderData.addEventListener("click", () => {
 });
 
 //Menu Toggle
-menuBar.addEventListener("click", ()=> {
-    let menuShow = document.getElementById("list").className
-    if(menuShow){
-        document.getElementById("list").className = "menu__item.responsive";
-    }/*if(menuShow){
-        document.getElementById("list").className = "menu__item";
-    }*/
-})
-
-
-
-
-/*function showItem() {
-    document.getElementById("list").className = "menu__item.responsive";
-}
-menuToggle.addEventListener("click", showItem)
-Esta función sólo funciona para mostrar, no oculta*/
-
-
-
+menuBurguer.addEventListener("click", ()=> {
+    menuBurguer.classList.toggle("fa-times");
+    menuDropdown.classList.toggle("disable");
+});
 
 // Filter Director and Producer
 filterByDirectorProducer.addEventListener("change", ()=>{

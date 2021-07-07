@@ -184,3 +184,12 @@ let prueba = data.films.forEach(film=> {
 console.log(prueba);
 */
 
+/*
+console.log(document.querySelectorAll(".container").forEach(item=>{
+    if(item.className == 'container disable'){
+        console.log(item.className);
+    }else{
+        console.log(item.className);
+    }
+}));
+*/

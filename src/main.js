@@ -1,21 +1,26 @@
 import { searchDataFilms, sortData , filterDataByDirectorProducer } from './data.js';
-// import data functions
 import data from './data/ghibli/ghibli.js';
 
+// Navegation
+const menuBurguer = document.getElementById("menuBurguer");
+const menuDropdown = document.querySelector(".menu__dropdown");
+
+
+// Pages
 const home = document.getElementById("home");
 const movie = document.getElementById("film");
-const characters = document.getElementById("allCharacters");
+//const characters = document.getElementById("allCharacters");
 
-// Selectors DOM
+// Home page
 const searchFilms = document.getElementById('searchFilm');
 const filterByDirectorProducer = document.getElementById("filterByDirectorProducer");
 const sortBy = document.querySelector("#sortBy");
 const orderData = document.getElementById("orderData");
 const counter = document.querySelector(".menuBar__showing");
 const filmsContainer = document.querySelector('.container__films');
-const menuBurguer = document.getElementById("menuBurguer");
-const menuDropdown = document.querySelector(".menu__dropdown");
 
+// Movie/Film Page
+const filmInformation = document.querySelector(".container__generalInformation");
 
 // Default variables
 let dataFilms = data.films;
@@ -43,7 +48,7 @@ function showDataFilms(films){
             container.addEventListener("click", () => {
                 home.classList.add("disable");
                 movie.classList.remove("disable");
-                const filmInformation = document.querySelector(".container__generalInformation");
+                //Add content sections
                 filmInformation.innerHTML = `
                 <section>${film.title}</section>
                 `;
@@ -54,29 +59,47 @@ function showDataFilms(films){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    menuDropdown.classList.toggle("disable");
-    movie.classList.add("disable");
-    characters.classList.add("disable");
     showDataFilms(sortData(dataFilms, sortBy.value, sortOrder));
     addFilterByDirectorProducer();
 });
 
-// Order Films
-sortBy.addEventListener("change", () => {
-    showDataFilms(dataFilms);
-});
-
-// Order Data
-orderData.addEventListener("click", () => {
-    sortOrder = (orderData.classList.length === 3 ? 'asc' : 'desc');
-    orderData.classList.toggle("fa-sort-amount-up-alt");
-    showDataFilms(dataFilms);
-});
-
-//Menu Toggle
+//Menu Toggle navegation
 menuBurguer.addEventListener("click", ()=> {
     menuBurguer.classList.toggle("fa-times");
     menuDropdown.classList.toggle("disable");
+});
+
+// agregar addEventListener de navegation
+
+
+// Functions add filter by director or producer
+function getNamesDirectorProducer(films){
+    const namesDirectorProducer = [];
+    /* Add names of Directors and Producers */
+    films.forEach(film => {
+        namesDirectorProducer.push(film.director);
+        namesDirectorProducer.push(film.producer);
+    });
+    /* Delete Duplicates */
+    return namesDirectorProducer.filter((item, index)=>{
+        return namesDirectorProducer.indexOf(item) === index;
+    });
+}
+
+function addFilterByDirectorProducer(){
+    const namesDirectorProducer = getNamesDirectorProducer(data.films);
+    for (const name of namesDirectorProducer){
+        var option = document.createElement("option");
+        option.value = name;
+        option.text = name;
+        filterByDirectorProducer.appendChild(option);
+    }
+}
+
+// Search By Film
+searchFilms.addEventListener('keyup', ()=>{
+    dataFilms = searchDataFilms(data.films, searchFilms.value.toLowerCase());
+    showDataFilms(dataFilms);
 });
 
 // Filter Director and Producer
@@ -90,9 +113,15 @@ filterByDirectorProducer.addEventListener("change", ()=>{
     showDataFilms(dataFilms);
 });
 
-// Search By Film
-searchFilms.addEventListener('keyup', ()=>{
-    dataFilms = searchDataFilms(data.films, searchFilms.value.toLowerCase());
+// Order Films By
+sortBy.addEventListener("change", () => {
+    showDataFilms(dataFilms);
+});
+
+// Order Data
+orderData.addEventListener("click", () => {
+    sortOrder = (orderData.classList.length === 3 ? 'asc' : 'desc');
+    orderData.classList.toggle("fa-sort-amount-up-alt");
     showDataFilms(dataFilms);
 });
 
@@ -122,26 +151,3 @@ let prueba = data.films.forEach(film=> {
 console.log(prueba);
 */
 
-
-function addFilterByDirectorProducer(){
-    const namesDirectorProducer = getNamesDirectorProducer(data.films);
-    for (const name of namesDirectorProducer){
-        var option = document.createElement("option");
-        option.value = name;
-        option.text = name;
-        filterByDirectorProducer.appendChild(option);
-    }
-}
-
-function getNamesDirectorProducer(films){
-    const namesDirectorProducer = [];
-    /* Add names of Directors and Producers */
-    films.forEach(film => {
-        namesDirectorProducer.push(film.director);
-        namesDirectorProducer.push(film.producer);
-    });
-    /* Delete Duplicates */
-    return namesDirectorProducer.filter((item, index)=>{
-        return namesDirectorProducer.indexOf(item) === index;
-    });
-}

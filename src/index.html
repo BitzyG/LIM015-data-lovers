@@ -20,9 +20,13 @@
       <nav class="nav">
         <img class="nav__logo" src="assets/logo.png" alt="Studio Ghibli">
         <i id="menuBurguer" class="fas fa-bars"></i>
-        <ul class="menu__dropdown">
-          <li class="menu__list"><a href="#home" class="menu__item">Films</a></li>
-          <li class="menu__list"><a href="#allCharacters" class="menu__item">Characters</a></li>
+        <ul class="menu__dropdown disable">
+          <li class="menu__list">
+            <a id="urlHome" href="#home" class="menu__item">Films</a>
+          </li>
+          <li class="menu__list">
+            <a id="urlCharacters" href="#allCharacters" class="menu__item">Characters</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -52,11 +56,11 @@
         <section class="container__films">
         </section>
       </section>
-      <section class="container" id="film">
-        <section class="container__returnBack">
-          <!-- Aquí el ícono back -->
-        </section>
+      <section class="container disable" id="film">
         <section class="container__generalInformation">
+          <section class="container__returnBack">
+            <!-- Aquí el ícono back -->
+          </section>
         </section>
         <section class="container__people">
         </section>
@@ -65,7 +69,7 @@
         <section class="container__vehicle">
         </section>
       </section>
-      <section class="container" id="allCharacters">
+      <section class="container disable" id="allCharacters">
       </section>
     </main>
     <footer class="footer">

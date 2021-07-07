@@ -21,6 +21,7 @@ body{
     font-size: 10px;
     color: var(--color-white);
     background: var(--color-gradient);
+    scroll-behavior: smooth;
 }
 
 .header, .footer{
@@ -33,6 +34,27 @@ main {
     flex-grow: 1;
 }
 
+/* ****************** Scroll ************** */
+body::-webkit-scrollbar {
+    width: 9px;     /* Tamaño del scroll en vertical */
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--color-white);
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    box-shadow: 0 0 2px 1px var(--color-secondary);
+}
+
+body::-webkit-scrollbar-thumb:active {
+    background-color: var(--color-secondary);
+}
+
+body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
+    background: var(--color-main);
+}
 
 /* ************* Header************* */
 .header{
@@ -47,18 +69,11 @@ main {
     align-content: center;
     align-items: center;
     justify-content: space-between;
+    user-select: none;
 }
 
 .nav__logo{
     height: 4.5rem;
-}
-
-.menu{
-    margin-left: 1rem;
-    text-decoration: none;
-    font-family: var(--font-main);
-    color: var(--color-white);
-    font-weight: 500;
 }
 
 .menu__dropdown{
@@ -67,12 +82,14 @@ main {
     width: 100%;
     margin: 0;
 }
+
 .menu__list{
     padding: 0.5rem 0;
     margin: 0;
     width: 100%;
     text-align: center;
 }
+
 .menu__list:first-child{
     border-top: 2px solid;
 }
@@ -87,17 +104,19 @@ main {
     padding: 0.5rem;
     border-radius: 10px;
 }
+
 .menu__item:hover{
     color: var(--color-main);
     background: var(--color-white);
 }
 
-/* ************* Home ************* */
+/* ********** Page Home ************* */
 #home{
     min-height: 100%;
     background: url(assets/background.jpg) no-repeat center center fixed;
     background-size: cover;
     flex-grow: 1;
+    padding: 0.5rem 1rem;
 }
 
 /* ************* Menu Bar ************* */
@@ -110,13 +129,15 @@ main {
     margin-top: 0.8em;
 }
 
+/* -------------- Counter ----------- */
 .menuBar__showing{
     display: flex;
     justify-content: flex-end;
     margin-top: 0.5em;
+    user-select: none;
 }
 
-/* ----- Filter -----*/
+/* -------------- Filter -------------- */
 .filter{
     display: flex;
 }
@@ -158,16 +179,17 @@ main {
 .fas {
     margin-left: 0.3em;
     font-size: 2em;
-    user-select: none;
     align-self: center;
     color: var(--color-white);
+    cursor: pointer;
+    transition: all 0.5s ease;
 }
 
-/* ************* Films container ************* */
-.container{
-    padding: 0.5rem 1rem;
+.fas:hover{
+    opacity: 0.8;
 }
 
+/* ********************** Films container ******************* */
 .container__films {
     padding: 1rem 0rem;
     display: grid;
@@ -214,6 +236,15 @@ main {
     border-radius: 10px;
 }
 
+
+/************ film ************/
+#film, #allCharacters{
+    flex-grow: 1;
+}
+
+
+
+
 /* **************** Footer ************** */
 .footer{
     display: flex;
@@ -236,20 +267,18 @@ main {
     color: var(--color-secondary);
 }
 
-#film, #allCharacters{
-    flex-grow: 1;
-}
-
 .disable{
     display: none;
 }
 
 @media (min-width: 768px) {
+    /* ******* Nav Bar ******* */
     .menu__dropdown{
         display: flex;
         width: auto;
         padding: 0;
     }
+
     .menu__list:first-child{
         border-top: none;
     }
@@ -257,8 +286,8 @@ main {
     #menuBurguer{
         display: none;
     }
-  
-    /* Menu Bar*/
+
+    /* ******* Menu Bar ******* */
     .menuBar {
         flex-flow: row wrap;
         align-items: center;
@@ -285,7 +314,10 @@ main {
     body {
         font-size: 12px;
     }
-    .header, .footer, .container{
+    .header, .footer{
+        padding: 1rem 4rem;
+    }
+    #home{
         padding: 1rem 4rem;
     }
 }

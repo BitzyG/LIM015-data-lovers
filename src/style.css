@@ -242,7 +242,11 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     flex-grow: 1;
 }
 
-
+.container__generalInformation{
+    min-height: 75%;
+    background: linear-gradient( 91.7deg, rgba(0,0,0,0.75) -4.3%, rgba(0, 0, 0,0.75) 101.8% ), url(assets/background.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
 
 
 /* **************** Footer ************** */

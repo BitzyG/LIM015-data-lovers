@@ -4,12 +4,13 @@ import data from './data/ghibli/ghibli.js';
 // Navegation
 const menuBurguer = document.getElementById("menuBurguer");
 const menuDropdown = document.querySelector(".menu__dropdown");
-
+const urlHome = document.getElementById("urlHome");
+const urlCharacters = document.getElementById("urlCharacters");
 
 // Pages
 const home = document.getElementById("home");
 const movie = document.getElementById("film");
-//const characters = document.getElementById("allCharacters");
+const characters = document.getElementById("allCharacters");
 
 // Home page
 const searchFilms = document.getElementById('searchFilm');
@@ -20,7 +21,7 @@ const counter = document.querySelector(".menuBar__showing");
 const filmsContainer = document.querySelector('.container__films');
 
 // Movie/Film Page
-const filmInformation = document.querySelector(".container__generalInformation");
+const filmInformation = document.querySelector(".film__information");
 
 // Default variables
 let dataFilms = data.films;
@@ -48,9 +49,31 @@ function showDataFilms(films){
             container.addEventListener("click", () => {
                 home.classList.add("disable");
                 movie.classList.remove("disable");
-                //Add content sections
+                //Film Information
+                filmInformation.innerHTML = "";
                 filmInformation.innerHTML = `
-                <section>${film.title}</section>
+                    <h1 class='mainTitle'>${film.title}</h1>
+                        <article class='container__text'>
+                        <i class="fas fa-star"></i>
+                    </article>
+                    <article class='container__text'>
+                        <h3 class='subtitle'>Release date: </h3>
+                        <p class='paragraph'>${film.release_date}</p>
+                    </article>
+                    <article class='container__description'>
+                        <p class='paragraph'>${film.description}</p>
+                    </article>
+                    <section class='container__directorProducer'>
+                        <article class='container__text'>
+                            <h3 class='subtitle'>Producer: </h3>
+                            <p class='paragraph'> ${film.producer}</p>
+                        </article>
+                    <article class='container__text'>
+                        <h3 class='subtitle'>Director: </h3>
+                        <p class='paragraph'> ${film.director}</p>
+                    </article>
+                    </section>
+                    <img class="film__image" src='${film.poster}'loading='lazy'>
                 `;
             });
         });
@@ -70,7 +93,17 @@ menuBurguer.addEventListener("click", ()=> {
 });
 
 // agregar addEventListener de navegation
+urlHome.addEventListener("click", ()=>{
+    characters.classList.add("disable");
+    movie.classList.add("disable");
+    home.classList.remove("disable");
+});
 
+urlCharacters.addEventListener("click",()=>{
+    movie.classList.add("disable");
+    home.classList.add("disable");
+    characters.classList.remove("disable");
+});
 
 // Functions add filter by director or producer
 function getNamesDirectorProducer(films){

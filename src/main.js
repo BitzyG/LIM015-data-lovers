@@ -54,8 +54,9 @@ function showDataFilms(films){
                 filmInformation.innerHTML = `
                     <h1 class='mainTitle'>${film.title}</h1>
                         <article class='container__text'>
-                        <i class="fas fa-star"></i>
-                    </article>
+                            <i class="fas fa-star"></i>
+                            <p class='paragraph'>${film.rt_score}/100</p>
+                        </article>
                     <article class='container__text'>
                         <h3 class='subtitle'>Release date: </h3>
                         <p class='paragraph'>${film.release_date}</p>

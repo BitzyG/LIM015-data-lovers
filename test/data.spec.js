@@ -1,8 +1,8 @@
-import { searchDataFilms, sortData, filterDataByDirectorProducer } from '../src/data.js';
+import { searchData, sortData, filterDataByDirectorProducer, filterDataBy } from '../src/data.js';
 
 describe('search by film test', () => {
   it('is a function', () => {
-    expect(typeof searchDataFilms).toBe('function');
+    expect(typeof searchData).toBe('function');
   });
 
   it('should return the search result for the title search castle', () => {
@@ -23,7 +23,8 @@ describe('search by film test', () => {
         "producer": "Toshio Suzuki",
       }
     ];
-    const condition = 'castle';
+    const condition = 'title';
+    const value = 'castle';
     const result = [
       {
         "title": "Castle in the Sky",
@@ -31,7 +32,7 @@ describe('search by film test', () => {
         "producer": "Isao Takahata",
       }
     ];
-    expect(searchDataFilms(data,condition)).toEqual(result);
+    expect(searchData(data, condition, value)).toEqual(result);
   });
 });
 
@@ -80,6 +81,47 @@ describe('orderBy test', () => {
     expect(typeof sortData).toBe('function');
   });
 
+  it('returns `desc orderBy test`', () => {
+    const data = [
+      {
+        "title": "My Neighbor Totoro",
+        "release_date": "1988",
+        "rt_score": "93",
+      },
+      {
+        "title": "Kiki's Delivery Service",
+        "release_date": "1989",
+        "rt_score": "96",
+      },
+      {
+        "title": "Castle in the Sky",
+        "release_date": "1986",
+        "rt_score": "95",
+      }
+    ];
+    const sortBy = 'rt_score';
+    const sortOrder = 'desc';
+    const result = [
+      {
+        "title": "Kiki's Delivery Service",
+        "release_date": "1989",
+        "rt_score": "96",
+      },
+      {
+        "title": "Castle in the Sky",
+        "release_date": "1986",
+        "rt_score": "95",
+      },
+      {
+        "title": "My Neighbor Totoro",
+        "release_date": "1988",
+        "rt_score": "93",
+      }
+
+    ];
+    expect(sortData(data,sortBy,sortOrder)).toEqual(result);
+  });
+
   it('returns `asc orderBy test`', () => {
     const data = [
       {
@@ -119,44 +161,50 @@ describe('orderBy test', () => {
     ];
     expect(sortData(data,sortBy,sortOrder)).toEqual(result);
   });
-  it('returns `desc orderBy test`', () => {
+});
+
+describe('filter Data By test', () => {
+  it('is a function', () => {
+    expect(typeof filterDataBy).toBe('function');
+  });
+
+  it('should return the result to gender Female: Lusheeta, Dola.', () => {
     const data = [
       {
-        "title": "Kiki's Delivery Service",
-        "release_date": "1989",
-        "rt_score": "96",
+        "name": "Pazu",
+        "gender": "Male",
+        "age": "13",
+        "specie": "Human"
       },
       {
-        "title": "Castle in the Sky",
-        "release_date": "1986",
-        "rt_score": "95",
+        "name": "Lusheeta Toel Ul Laputa",
+        "gender": "Female",
+        "age": "13",
+        "specie": "Human"
       },
       {
-        "title": "My Neighbor Totoro",
-        "release_date": "1988",
-        "rt_score": "93",
+        "name": "Dola",
+        "gender": "Female",
+        "age": "60",
+        "specie": "Human"
       }
     ];
-    const sortBy = 'rt_score';
-    const sortOrder = 'desc';
+    const condition = 'gender';
+    const value = 'Female';
     const result = [
       {
-        "title": "Kiki's Delivery Service",
-        "release_date": "1989",
-        "rt_score": "96",
+        "name": "Lusheeta Toel Ul Laputa",
+        "gender": "Female",
+        "age": "13",
+        "specie": "Human"
       },
       {
-        "title": "Castle in the Sky",
-        "release_date": "1986",
-        "rt_score": "95",
-      },
-      {
-        "title": "My Neighbor Totoro",
-        "release_date": "1988",
-        "rt_score": "93",
+        "name": "Dola",
+        "gender": "Female",
+        "age": "60",
+        "specie": "Human"
       }
-
     ];
-    expect(sortData(data,sortBy,sortOrder)).toEqual(result);
+    expect(filterDataBy(data,condition,value)).toEqual(result);
   });
 });

@@ -333,9 +333,3 @@ orderData.addEventListener("click", () => {
     orderData.classList.toggle("fa-sort-amount-up-alt");
     showDataFilms(dataFilms);
 });
-
-//Ratings
-const rating = data.films.forEach(film=>{
-    film.rt_score;
-    console.log(film.rt_score)
-})

@@ -16,16 +16,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header class="header">
+    <header class="header" id="header">
       <nav class="nav">
         <img class="nav__logo" src="assets/logo.png" alt="Studio Ghibli">
         <i id="menuBurguer" class="fas fa-bars"></i>
         <ul class="menu__dropdown disable">
           <li class="menu__list">
-            <a id="urlHome" href="#home" class="menu__item">Films</a>
+            <a id="urlHome" class="menu__item">Films</a>
           </li>
           <li class="menu__list">
-            <a id="urlCharacters" href="#allCharacters" class="menu__item">Characters</a>
+            <a id="urlCharacters" class="menu__item">Characters</a>
           </li>
         </ul>
       </nav>
@@ -51,7 +51,7 @@
               </select>
               <i id="orderData" class="fas fa-sort-amount-down-alt"></i>
             </section>
-            <section class="menuBar__showing">Showing</section>
+            <section id="filmsCounter" class="menuBar__showing">Showing</section>
         </section>
         <section class="container__films">
         </section>

@@ -333,29 +333,3 @@ orderData.addEventListener("click", () => {
     orderData.classList.toggle("fa-sort-amount-up-alt");
     showDataFilms(dataFilms);
 });
-
-
-/*
-//Usaremos esta parte para la segunda historia de usuario
-    console.log(film.title);
-    console.log(film.poster);
-    film.people.map(person => {
-        console.log(person.name);
-        console.log(person.img);
-    })
-    if(film.locations.length != 0){
-        film.locations.map(location => {
-            console.log(location.name);
-        })
-    }else{
-        console.log("No tiene locación");
-    }
-
-let prueba = data.films.forEach(film=> {
-    film.people.forEach(person=>{
-        console.log(person.name)
-    })
-    }
-);
-console.log(prueba);
-*/

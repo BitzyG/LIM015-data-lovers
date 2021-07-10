@@ -42,7 +42,7 @@ function showDataFilms(films){
                 <section class='card__title'>
                     ${film.title}
                 </section>
-                <img class='card__image' src='${film.poster}' alt='${film.title}' title='${film.title}' loading='lazy'>
+                <img class='card__image' src='${film.poster}' alt='${film.title}' loading='lazy'>
             `;
             filmsContainer.appendChild(container);
             container.addEventListener("click", () => {

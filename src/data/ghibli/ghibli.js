@@ -157,7 +157,7 @@ export default {
         {
           "id": "26361a2c-32c6-4bd5-ae9c-8e40e17ae28d",
           "name": "Pazu's Mines",
-          "img": "",
+          "img": "https://preview.redd.it/fmikehlh8dl41.jpg?auto=webp&s=a997a7d6726fc151a438985899b052d0fd357716",
           "climate": "Dry",
           "terrain": "Hill",
           "surface_water": "0",
@@ -448,7 +448,7 @@ export default {
         {
           "id": "62346d33-caa0-4c17-8016-0aca56f3066b",
           "name": "Karikiya",
-          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/5/51/Kiki%27s_House.jpg",
+          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/e/e3/Majo002.jpg",
           "climate": "Mild",
           "terrain": "City",
           "surface_water": "30",
@@ -564,7 +564,7 @@ export default {
         {
           "id": "3f78eba1-f9b0-489b-8686-f4508cdf049d",
           "name": "Toshio",
-          "img": "http://static.wikia.nocookie.net/studio-ghibli/images/2/23/Toshio.png",
+          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/5/5d/Toshio.jpg",
           "gender": "Male",
           "age": "Adult",
           "eye_color": "Black",
@@ -666,7 +666,7 @@ export default {
         {
           "id": "dbeeaecb-7817-4b8b-90ca-edc432d3033e",
           "name": "Taeko's House",
-          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/c/cf/Only_Yesterday_artwork_%2813%29.jpg",
+          "img": "https://images.squarespace-cdn.com/content/v1/54fc8146e4b02a22841f4df7/1571850401468-9TTOSKJGO49OEAKEJ4O6/Art+of+Only+Yesterday+C+-+8.jpg",
           "climate": "Continental",
           "terrain": "River",
           "surface_water": "40",
@@ -1121,7 +1121,7 @@ export default {
         {
           "id": "615aa48d-8673-4117-b35a-79cb67af1897",
           "name": "Forest",
-          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/3/3a/Forest.jpg",
+          "img": "https://www.teahub.io/photos/full/230-2307062_princess-mononoke-forest-spirit.jpg",
           "climate": "Tropical",
           "terrain": "Forest",
           "surface_water": "60",
@@ -1602,7 +1602,7 @@ export default {
         {
           "id": "2354305f-dccd-4c44-a79e-cc60ba7376e6",
           "name": "Howl's castle",
-          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/1/12/HowlCastle.png",
+          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/e/e6/Howls_Castle.jpg",
           "description": "Wizard Howl's home. It's scale changes from scene to scene.",
           "vehicle_class": "Moving castle",
           "length": "unknown",
@@ -2081,7 +2081,7 @@ export default {
         {
           "id": "be837047-cd6f-477f-a83d-5aec9ed1dda7",
           "name": "Coquelicot Manor",
-          "img": "",
+          "img": "https://cache.desktopnexus.com/thumbseg/2436/2436746-bigthumbnail.jpg",
           "climate": "Warm",
           "terrain": "Hill",
           "surface_water": "30",

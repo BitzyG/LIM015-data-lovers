@@ -27,8 +27,12 @@ const containerPeople = document.querySelector(".container__people");
 const containerLocations = document.querySelector(".container__locations");
 const containerVehicles = document.querySelector(".container__vehicle");
 
+//Top ten page
+const topTen = document.querySelector("#containerTopTen");
+
 // Default variables
 const allDataFilms = data.films;
+let pageReturn = 'home';
 let dataFilms = data.films;
 let sortOrder = 'asc';
 
@@ -77,6 +81,43 @@ const showDataFilms = (films) => {
         });
     }
     filmsCounter.innerHTML = `Showing ${films.length}`;
+}
+
+const showTopTen = () => {
+    const sortedData = sortData(allDataFilms, 'rt_score', 'desc').slice(0, 10);
+        sortedData.forEach(film => {
+            // Show Films
+            const container = document.createElement('section');
+            container.classList.add('container__card');
+            container.appendChild(cardTemplate(film));
+            topTen.appendChild(container);
+            //Show page film
+            container.addEventListener("click", () => {
+                load(film);
+            });
+        });
+}
+
+const load = ({people, locations, vehicles, ...information}) => {
+    deleteChilds(containerPeople);
+    deleteChilds(containerLocations);
+    deleteChilds(containerVehicles);
+    navigateTo('film');
+    addFilmInformation(information);
+    //addFilmPeople(people);
+    addFilmOthers(people, containerPeople, 'Characters');
+    if(locations.length !== 0){
+        containerLocations.classList.remove("disable");
+        addFilmOthers(locations, containerLocations, 'Locations');
+    }else{
+        containerLocations.classList.add("disable");
+    }
+    if(vehicles.length !== 0){
+        containerVehicles.classList.remove("disable");
+        addFilmOthers(vehicles, containerVehicles, 'Vehicles');
+    }else{
+        containerVehicles.classList.add("disable");
+    }
 }
 
 const cardTemplate = ({title, poster, name, img}) => {
@@ -309,6 +350,7 @@ const addFilterBy = (filter, data, condition = 'DirectorProducer') => {
 document.addEventListener('DOMContentLoaded', () => {
     showDataFilms(allDataFilms);
     addFilterBy(filterByDirectorProducer, allDataFilms);
+    showTopTen();
 });
 
 //Menu Toggle navegation
@@ -320,14 +362,15 @@ menuBurguer.addEventListener("click", () => {
 document.querySelectorAll(".menu__item").forEach((link) => {
     link.addEventListener("click",(e)=>{
         e.preventDefault();
-        navigateTo(link.getAttribute("href").slice(1));
+        pageReturn = link.getAttribute("href").slice(1);
+        navigateTo(pageReturn);
         menuBurguer.classList.toggle("fa-times");
         menuDropdown.classList.toggle("disable");
     });
 });
 
 returnBack.addEventListener("click", () => {
-    navigateTo('home');
+    navigateTo(pageReturn);
 });
 
 searchFilms.addEventListener('keyup', () => {

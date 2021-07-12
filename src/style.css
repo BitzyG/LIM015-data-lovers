@@ -87,7 +87,6 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 .menu__list{
     padding: 0.5rem 0;
     margin: 0;
-    width: 100%;
     text-align: center;
 }
 
@@ -242,7 +241,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 
 
 /************ film ************/
-#film, #allCharacters{
+#film, #allCharacters, #topTen{
     flex-grow: 1;
     min-height: 100%;
     width: 100%;
@@ -470,7 +469,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
         min-width: 120px;
     }
     .container__generalInformation{
-        padding: 4rem;
+        padding: 2rem 4rem;
     }
     .film__information{
         display: flex;
@@ -478,6 +477,9 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     }
     .film__image{
         margin: 0rem 0rem 0rem 2rem;
+    }
+    .container__people, .container__locations, .container__vehicle{
+        padding: 1rem 4rem;
     }
 }
 
@@ -500,7 +502,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     body {
         font-size: 14px;
     }
-    .container__films, .menuBar, .container__people, .container__locations, .container__vehicle{
+    .container__films, .menuBar, .film__information, .container__people, .container__locations, .container__vehicle{
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;

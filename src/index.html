@@ -16,16 +16,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header class="header" id="header">
+    <header class="header">
       <nav class="nav">
         <img class="nav__logo" src="assets/logo.png" alt="Studio Ghibli">
         <i id="menuBurguer" class="fas fa-bars"></i>
         <ul class="menu__dropdown disable">
           <li class="menu__list">
-            <a id="urlHome" class="menu__item">Films</a>
+            <a href="#home" class="menu__item">Films</a>
           </li>
           <li class="menu__list">
-            <a id="urlCharacters" class="menu__item">Characters</a>
+            <a href="#allCharacters" class="menu__item">Characters</a>
           </li>
         </ul>
       </nav>
@@ -65,12 +65,9 @@
           <section class="film__information">
           </section>
         </section>
-        <section class="container__people">
-        </section>
-        <section class="container__locations">
-        </section>
-        <section class="container__vehicle">
-        </section>
+        <section class="container__people"></section>
+        <section class="container__locations"></section>
+        <section class="container__vehicle"></section>
       </section>
       <section class="container disable" id="allCharacters">
       </section>
@@ -88,6 +85,11 @@
         </a>
       </section>
     </footer>
+    <!-- Templates -->
+    <template id="card">
+      <img class="card__image" loading="lazy">
+      <figcaption class="card__title"></figcaption>
+    </template>
     <script src="main.js" type="module"></script>
   </body>
 </html>

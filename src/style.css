@@ -2,7 +2,7 @@
     --color-main: rgb(8, 27, 57, 1); /*rgba(0, 9, 43, 1);*/
     --color-secondary: rgba(0, 173, 255, 1);
     --color-white: #fff;
-    --color-gradient: linear-gradient(180deg, rgb(2, 97, 126) 16.45%, rgb(0, 9, 43) 100%);
+    --color-gradient: linear-gradient(180deg, rgba(2, 6, 16, 1) 16.45%, rgba(0, 14, 34, 1) 100%);
     --font-main: 'Montserrat', sans-serif;
     --font-secondary: 'Open Sans', sans-serif;;
 }
@@ -30,7 +30,7 @@ body{
     background-color: var(--color-main);
 }
 
-main {
+main{
     display: flex;
     flex-grow: 1;
 }
@@ -57,7 +57,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     background: var(--color-main);
 }
 
-/* ************* Header************* */
+/* ************* Header ************* */
 .header{
     position: sticky;
     top: 0;
@@ -109,6 +109,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 .menu__item:hover{
     color: var(--color-main);
     background: var(--color-white);
+    cursor: pointer;
 }
 
 /* ********** Page Home ************* */
@@ -166,7 +167,6 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     background-position: right 15px top 0.8em, right 10px top 0.8em;
     background-size: 5px 5px, 5px 5px;
     cursor: pointer;
-    min-width: 160px;
 }
 
 .filter__comboBox:hover, .menuBar__search:hover, .menuBar__search:focus{
@@ -192,7 +192,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 
 /* ********************** Films container ******************* */
 .container__films {
-    padding: 1rem 0rem;
+    margin: 1rem 0rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(11.875em,1fr));
     justify-items: center;
@@ -203,13 +203,13 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 
 /* -------- Film card -------- */
 .container__card{
-    position: relative;
     width: 11.875em;
-    height: 16.875em;
     border-radius: 10px;
     box-shadow: 0 0 0.313rem var(--color-white);
     transition: all 0.5s ease;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .container__card:hover{
@@ -218,10 +218,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 }
 
 .card__title{
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
+    flex: 1;
     background: var(--color-main);
     opacity: 0.9;
     border-bottom-left-radius: 10px;
@@ -229,12 +226,17 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     font-family: var(--font-secondary);
     font-weight: 400;
     padding: 0.3rem 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .card__image{
     width: 100%;
-    height: 100%;
-    border-radius: 10px;
+    height: 16.875em;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     object-fit: cover;
 }
 
@@ -243,6 +245,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 #film, #allCharacters{
     flex-grow: 1;
     min-height: 100%;
+    width: 100%;
 }
 
 .container__generalInformation{
@@ -253,21 +256,30 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     flex-direction: column;
 }
 
+#film .container__people{
+    margin-top: 1rem;
+}
+
+.container__people, .container__locations, .container__vehicle{
+    padding: 1rem;
+}
+
 .container__returnBack{
     display: flex;
     align-content: baseline;
     user-select: none;
-
 }
 
 .container__returnBack .paragraph{
     padding-left: 0.5rem;
 }
 
+/* **************** Film information *************** */
 .film__information{
     display: flex;
     flex-flow: column;
 }
+
 .mainTitle{
     font-size: 25px;
     color:var(--color-secondary);
@@ -343,20 +355,40 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     height: 20em;
 }
 
-/* ************* characters ************* */
-.container__people{
-    padding: 1rem;
+/* ************* container cards films ************* */
+.container__cards{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10em,1fr));
+    justify-items: center;
+    gap: 1rem;
+    min-height: 13.759em;
 }
 
-.container__characters{
+.container__card-film{
+    width: 10em;
+    margin: 0;
+    user-select: none;
+}
+
+.container__card-film .card__image{
+    height: 10em;
+}
+
+#film{
+    padding-bottom: 1rem;
+}
+
+/* container others */
+.container__subtitle{
     display: flex;
+    justify-content: space-between;
+    align-items: baseline;
     flex-wrap: wrap;
 }
 
-.card__image-film{
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
+.container__subtitle > * {
+    margin: 0px;
 }
 
 /* **************** Footer ************** */
@@ -456,13 +488,21 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     .header, .footer{
         padding: 1rem 4rem;
     }
-    #home{
+    .container{
         padding: 1rem 4rem;
+    }
+    #film{
+        padding:0rem;
     }
 }
 
-@media (min-width: 1500px){
+@media (min-width: 1200px){
     body {
-        font-size: 16px;
+        font-size: 14px;
+    }
+    .container__films, .menuBar, .container__people, .container__locations, .container__vehicle{
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }

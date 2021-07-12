@@ -67,30 +67,45 @@ function addFilmInformation(film){
     //Film Information
     filmInformation.innerHTML = "";
     filmInformation.innerHTML = `
-        <h1 class='mainTitle'>${film.title}</h1>
-            <article class='container__text'>
-                <i class="fas fa-star"></i>
-                <p class='paragraph'>${film.rt_score}/100</p>
-            </article>
-            <article class='container__text'>
-                <h3 class='subtitle'>Release date: </h3>
-                <p class='paragraph'>${film.release_date}</p>
-            </article>
-            <article class='container__description'>
-                <p class='paragraph'>${film.description}</p>
-            </article>
-            <section class='container__directorProducer'>
+        <section class='divison'>
+            <h1 class='mainTitle'>${film.title}</h1>
+            <section class='container__row'>
                 <article class='container__text'>
-                    <h3 class='subtitle'>Producer: </h3>
-                    <p class='paragraph'> ${film.producer}</p>
+                    <div class="starEmpty">
+                        <div class="starFull" style='width:${film.rt_score}%'></div>
+                    </div>
+                    <p class='paragraph'>${film.rt_score}/100</p>
                 </article>
-            <article class='container__text'>
-                <h3 class='subtitle'>Director: </h3>
-                <p class='paragraph'> ${film.director}</p>
-            </article>
+                <article class='container__text'>
+                    <h3 class='subtitle'>Release date: </h3>
+                    <p class='paragraph'>${film.release_date}</p>
+                </article>
             </section>
+                <article class='container__description'>
+                    <p class='paragraph'>${film.description}</p>
+                </article>
+                <section class='container__row'>
+                    <article class='container__text'>
+                        <h3 class='subtitle'>Producer: </h3>
+                        <p class='paragraph'> ${film.producer}</p>
+                    </article>
+                <article class='container__text'>
+                    <h3 class='subtitle'>Director: </h3>
+                    <p class='paragraph'> ${film.director}</p>
+                </article>
+                </section>
+        </section>
+        <section class='film__poster'>
             <img class="film__image" src='${film.poster}'loading='lazy'>
+        </section>
         `;
+        /*const rating = data.films.forEach(film=>{
+            film.rt_score;
+            //console.log(film.rt_score)
+            const percentageRounded = `${Math.round(film.rt_score/10)*10}%`;
+            console.log(percentageRounded);
+            document.querySelector("#starFull").style.width = percentageRounded;
+        });*/
 }
 
 function addFilmPeople({people}){

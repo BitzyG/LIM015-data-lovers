@@ -241,7 +241,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 
 
 /************ film ************/
-#film, #allCharacters, #topTen{
+#film, #allCharacters, #statistics{
     flex-grow: 1;
     min-height: 100%;
     width: 100%;
@@ -259,7 +259,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     margin-top: 1rem;
 }
 
-.container__people, .container__locations, .container__vehicle{
+.section{
     padding: 1rem;
 }
 
@@ -346,6 +346,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     display: flex;
     justify-content: center;
 }
+
 .film__image{
     border-radius: 10px;
     box-shadow: 0 0 0.313rem var(--color-secondary);
@@ -388,6 +389,11 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 
 .container__subtitle > * {
     margin: 0px;
+}
+
+/* ***********  statistics ************** */
+#statistics{
+    padding: 1rem;
 }
 
 /* **************** Footer ************** */
@@ -478,7 +484,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     .film__image{
         margin: 0rem 0rem 0rem 2rem;
     }
-    .container__people, .container__locations, .container__vehicle{
+    .section{
         padding: 1rem 4rem;
     }
 }
@@ -502,7 +508,7 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     body {
         font-size: 14px;
     }
-    .container__films, .menuBar, .film__information, .container__people, .container__locations, .container__vehicle{
+    .container__films, .menuBar, .film__information, .section{
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;

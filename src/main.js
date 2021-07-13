@@ -2,7 +2,7 @@ import {
     searchData,
     sortData,
     filterDataByDirectorProducer,
-    //filterDataBy,
+    filterDataBy,
     getDataFilterBy,
     getNamesDirectorProducer
 } from './data.js';
@@ -28,13 +28,22 @@ const containerLocations = document.querySelector(".container__locations");
 const containerVehicles = document.querySelector(".container__vehicle");
 
 //Top ten page
-const topTen = document.querySelector("#containerTopTen");
+const topTen = document.querySelector("#containerStatistics");
 
 // Default variables
 const allDataFilms = data.films;
 let pageReturn = 'home';
 let dataFilms = data.films;
 let sortOrder = 'asc';
+const allCharacters = [];
+
+allDataFilms.forEach(item => {
+    item.people.forEach(person => {
+        allCharacters.push(person);
+    });
+});
+
+//console.log(allCharacters);
 
 const deleteChilds = (container) => {
     while(container.lastChild){
@@ -50,33 +59,14 @@ const showDataFilms = (films) => {
     }else{
         const sortedData = sortData(films, sortBy.value, sortOrder)
         sortedData.forEach(film => {
-            const {people, locations, vehicles, ...information} = film;
             // Show Films
             const container = document.createElement('section');
             container.classList.add('container__card');
-            container.appendChild(cardTemplate(information));
+            container.appendChild(cardTemplate(film));
             filmsContainer.appendChild(container);
             //Show page film
             container.addEventListener("click", () => {
-                deleteChilds(containerPeople);
-                deleteChilds(containerLocations);
-                deleteChilds(containerVehicles);
-                navigateTo('film');
-                addFilmInformation(information);
-                //addFilmPeople(people);
-                addFilmOthers(people, containerPeople, 'Characters');
-                if(locations.length !== 0){
-                    containerLocations.classList.remove("disable");
-                    addFilmOthers(locations, containerLocations, 'Locations');
-                }else{
-                    containerLocations.classList.add("disable");
-                }
-                if(vehicles.length !== 0){
-                    containerVehicles.classList.remove("disable");
-                    addFilmOthers(vehicles, containerVehicles, 'Vehicles');
-                }else{
-                    containerVehicles.classList.add("disable");
-                }
+                showFilmSections(film);
             });
         });
     }
@@ -85,39 +75,35 @@ const showDataFilms = (films) => {
 
 const showTopTen = () => {
     const sortedData = sortData(allDataFilms, 'rt_score', 'desc').slice(0, 10);
-        sortedData.forEach(film => {
-            // Show Films
-            const container = document.createElement('section');
-            container.classList.add('container__card');
-            container.appendChild(cardTemplate(film));
-            topTen.appendChild(container);
-            //Show page film
-            container.addEventListener("click", () => {
-                load(film);
-            });
+    sortedData.forEach(film => {
+        // Show Films
+        const container = document.createElement('section');
+        container.classList.add('container__card');
+        container.appendChild(cardTemplate(film));
+        topTen.appendChild(container);
+        //Show page film
+        container.addEventListener("click", () => {
+            showFilmSections(film);
         });
+    });
 }
 
-const load = ({people, locations, vehicles, ...information}) => {
+const showFilmSections = ({people, locations, vehicles, ...information}) => {
     deleteChilds(containerPeople);
     deleteChilds(containerLocations);
     deleteChilds(containerVehicles);
     navigateTo('film');
     addFilmInformation(information);
-    //addFilmPeople(people);
-    addFilmOthers(people, containerPeople, 'Characters');
+    //addFilmSection(people, containerPeople, 'Characters');
+    addFilmPeople(people);
     if(locations.length !== 0){
         containerLocations.classList.remove("disable");
-        addFilmOthers(locations, containerLocations, 'Locations');
-    }else{
-        containerLocations.classList.add("disable");
-    }
+        addFilmSection(locations, containerLocations, 'Locations');
+    } else containerLocations.classList.add("disable");
     if(vehicles.length !== 0){
         containerVehicles.classList.remove("disable");
-        addFilmOthers(vehicles, containerVehicles, 'Vehicles');
-    }else{
-        containerVehicles.classList.add("disable");
-    }
+        addFilmSection(vehicles, containerVehicles, 'Vehicles');
+    } else containerVehicles.classList.add("disable");
 }
 
 const cardTemplate = ({title, poster, name, img}) => {
@@ -132,7 +118,7 @@ const cardTemplate = ({title, poster, name, img}) => {
 }
 
 const addFilmInformation = (film) => {
-    filmInformation.innerHTML = "";
+    deleteChilds(filmInformation);
     filmInformation.innerHTML = `
         <section class='divison'>
             <h1 class='mainTitle'>${film.title}</h1>
@@ -166,19 +152,12 @@ const addFilmInformation = (film) => {
             <img class="film__image" src='${film.poster}'loading='lazy'>
         </section>
         `;
-        /*const rating = data.films.forEach(film=>{
-            film.rt_score;
-            //console.log(film.rt_score)
-            const percentageRounded = `${Math.round(film.rt_score/10)*10}%`;
-            console.log(percentageRounded);
-            document.querySelector("#starFull").style.width = percentageRounded;
-        });*/
 }
-/*
+
+
 const addFilmPeople = (people) => {
     // Default Varibles characters
     let characters = people;
-    let sortCharactersOrder = 'asc';
     // Container
     containerPeople.innerHTML = `
         <section class="secondaryTitle">
@@ -188,24 +167,6 @@ const addFilmPeople = (people) => {
     // Menu Characters Bar
     const menuCharactersBar = document.createElement("section");
     menuCharactersBar.className = "menuBar";
-    // Add search character by name
-    const containerSearchCharacter = document.createElement("section");
-    const searchCharacter = document.createElement("input");
-    searchCharacter.type = "text";
-    searchCharacter.className = "menuBar__search";
-    searchCharacter.placeholder = "Search character";
-    containerSearchCharacter.appendChild(searchCharacter);
-    // Add filter character by gender
-    const containerFilterCharacterByGender = document.createElement("section");
-    containerFilterCharacterByGender.className = "filter";
-    const filterCharacterByGender = document.createElement("select");
-    filterCharacterByGender.className = "filter__comboBox";
-    filterCharacterByGender.innerHTML = `
-        <option value="all" disabled selected>Gender</option>
-        <option value="all">All</option>
-        `;
-    addFilterBy(filterCharacterByGender, people, "gender");
-    containerFilterCharacterByGender.appendChild(filterCharacterByGender);
     // Add filter character by species
     const containerFilterCharacterBySpecie = document.createElement("section");
     containerFilterCharacterBySpecie.className = "filter";
@@ -217,73 +178,30 @@ const addFilmPeople = (people) => {
     `;
     addFilterBy(filterCharacterBySpecie, people, "specie");
     containerFilterCharacterBySpecie.appendChild(filterCharacterBySpecie);
-    //Add order characters
-    const containerOrderCharacter = document.createElement("section");
-    containerOrderCharacter.className = "filter";
-    const sortCharacterBy = document.createElement("select");
-    sortCharacterBy.className = "filter__comboBox";
-    sortCharacterBy.innerHTML = `
-        <option value="name" disabled selected>Order by</option>
-        <option value="name">Name</option>
-    `;
-    const orderCharacter = document.createElement("i");
-    orderCharacter.className = "fas fa-sort-amount-down-alt";
-    containerOrderCharacter.appendChild(sortCharacterBy);
-    containerOrderCharacter.appendChild(orderCharacter);
     //Add show counter
     const charactersCounter = document.createElement("section");
     charactersCounter.className = "menuBar__showing";
     charactersCounter.innerHTML = `Showing ${people.length}`;
     // Menu character bar
     const containerCharacters = document.createElement("section");
-    menuCharactersBar.appendChild(containerSearchCharacter);
-    menuCharactersBar.appendChild(containerFilterCharacterByGender);
     menuCharactersBar.appendChild(containerFilterCharacterBySpecie);
-    menuCharactersBar.appendChild(containerOrderCharacter);
     menuCharactersBar.appendChild(charactersCounter);
     // Container People
     containerPeople.appendChild(menuCharactersBar);
     containerPeople.appendChild(containerCharacters);
     //Mostrar Character
-    showCharacters(containerCharacters, characters, sortCharacterBy, sortCharactersOrder, charactersCounter);
-
-    searchCharacter.addEventListener("keyup",()=>{
-        characters = searchData(people, 'name', searchCharacter.value.toLocaleLowerCase());
-        showCharacters(containerCharacters, characters, sortCharacterBy, sortCharactersOrder, charactersCounter);
-    });
-
-    filterCharacterByGender.addEventListener("change", ()=>{
-        searchCharacter.value = "";
-        if(filterCharacterByGender.value === 'all'){
-            characters = people;
-        }else{
-            characters = filterDataBy(people,'gender',filterCharacterByGender.value);
-        }
-        showCharacters(containerCharacters, characters, sortCharacterBy, sortCharactersOrder, charactersCounter);
-    })
-
+    showCharacters(containerCharacters, characters, charactersCounter);
     filterCharacterBySpecie.addEventListener("change", ()=>{
-        searchCharacter.value = "";
         if(filterCharacterBySpecie.value === 'all'){
             characters = people;
         }else{
             characters = filterDataBy(people,'specie',filterCharacterBySpecie.value);
         }
-        showCharacters(containerCharacters, characters, sortCharacterBy, sortCharactersOrder, charactersCounter);
+        showCharacters(containerCharacters, characters, charactersCounter);
     })
+}
 
-    sortCharacterBy.addEventListener("change", () => {
-        showCharacters(containerCharacters, characters, sortCharacterBy, sortCharactersOrder, charactersCounter);
-    });
-
-    orderCharacter.addEventListener("click", () => {
-        sortCharactersOrder = (orderCharacter.classList.length === 3 ? 'asc' : 'desc');
-        orderCharacter.classList.toggle("fa-sort-amount-up-alt");
-        showCharacters(containerCharacters, characters, sortCharacterBy, sortCharactersOrder, charactersCounter);
-    });
-}*/
-
-const addFilmOthers = (data, containerFilmInformation, title) => {
+const addFilmSection = (data, containerFilmInformation, title) => {
     containerFilmInformation.innerHTML = `
         <section class="container__subtitle">
             <h2 class="subtitle">${title}</h2>
@@ -302,33 +220,30 @@ const addFilmOthers = (data, containerFilmInformation, title) => {
         containerCards.appendChild(card);
         //Add new page
         card.addEventListener("click", ()=>{
-            alert(`hola ${title}`);
+            //console.log(Object.keys(item).length);
+            alert(`hola ${item.name}`);
         });
     });
 }
 
 // Show characters
-/*
-const showCharacters = (containerCharacters, characters, sortCharacterBy, sortCharactersOrder, charactersCounter) => {
+
+const showCharacters = (containerCharacters, characters, charactersCounter) => {
     deleteChilds(containerCharacters);
-    if(characters.length === 0){
-        containerCharacters.innerHTML = "Character not found";
-    }else{
-        const sortedCharacterData = sortData(characters, sortCharacterBy.value, sortCharactersOrder);
-        // Show Data
-        containerCharacters.classList.add('container__cards');
-        sortedCharacterData.forEach(person => {
-            const container = document.createElement('figure');
-            container.setAttribute('class', 'container__card container__card-film');
-            container.appendChild(cardTemplate(person));
-            containerCharacters.appendChild(container);
-            container.addEventListener('click', ()=>{
-                alert(`${person.name}`);
-            });
+    const sortedCharacterData = sortData(characters, 'name', 'asc');
+    // Show Data
+    containerCharacters.classList.add('container__cards');
+    sortedCharacterData.forEach(person => {
+        const container = document.createElement('figure');
+        container.setAttribute('class', 'container__card container__card-film');
+        container.appendChild(cardTemplate(person));
+        containerCharacters.appendChild(container);
+        container.addEventListener('click', ()=>{
+            alert(`${person.name}`);
         });
-    }
+    });
     charactersCounter.innerHTML = `Showing ${characters.length}`;
-}*/
+}
 
 const navigateTo = (idPage) => {
     document.querySelectorAll(".container").forEach(page => {

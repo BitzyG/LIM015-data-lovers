@@ -8,7 +8,7 @@
     <meta name="author" content="co-authored by Anghel Trillo, Itzel Gonzalez"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="assets/icon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/icon.png">
     <link rel="stylesheet" href="style.css" />
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/971ef92afb.js" crossorigin="anonymous"></script>
@@ -25,10 +25,7 @@
             <a href="#home" class="menu__item">Films</a>
           </li>
           <li class="menu__list">
-            <a href="#allCharacters" class="menu__item">Characters</a>
-          </li>
-          <li class="menu__list">
-            <a href="#topTen" class="menu__item">Top 10</a>
+            <a href="#statistics" class="menu__item">Statistics</a>
           </li>
         </ul>
       </nav>
@@ -68,14 +65,18 @@
           <section class="film__information">
           </section>
         </section>
-        <section class="container__people"></section>
-        <section class="container__locations"></section>
-        <section class="container__vehicle"></section>
+        <section class="section container__people"></section>
+        <section class="section container__locations"></section>
+        <section class="section container__vehicle"></section>
       </section>
-      <section class="container disable" id="allCharacters">
-      </section>
-      <section class="container disable" id="topTen">
-        <section class="container__films" id="containerTopTen"></section>
+      <section class="container disable" id="statistics">
+        <section class="section">
+          <h1 class="mainTitle">Top 10</h1>
+          <section class="container__films" id="containerStatistics"></section>
+        </section>
+        <section class="section">
+          <!-- Estadisticas genero y especie de caracteres -->
+        </section>
       </section>
     </main>
     <footer class="footer">
@@ -95,6 +96,17 @@
     <template id="card">
       <img class="card__image" loading="lazy">
       <figcaption class="card__title"></figcaption>
+    </template>
+    <template id="modal">
+      <section class="modalContainer containerClose">
+        <div id="messageResult" class="modal modalClose">
+          <p id="close"><i class="fas fa-times"></i></p>
+          <!--  <section class="">
+          </section> -->
+        </div>
+      </section>
+    </template>
+    <template id="filmSection">
     </template>
     <script src="main.js" type="module"></script>
   </body>

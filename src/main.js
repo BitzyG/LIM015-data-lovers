@@ -27,8 +27,12 @@ const containerPeople = document.querySelector(".container__people");
 const containerLocations = document.querySelector(".container__locations");
 const containerVehicles = document.querySelector(".container__vehicle");
 
+//Top ten page
+const topTen = document.querySelector("#containerTopTen");
+
 // Default variables
 const allDataFilms = data.films;
+let pageReturn = 'home';
 let dataFilms = data.films;
 let sortOrder = 'asc';
 
@@ -79,6 +83,43 @@ const showDataFilms = (films) => {
     filmsCounter.innerHTML = `Showing ${films.length}`;
 }
 
+const showTopTen = () => {
+    const sortedData = sortData(allDataFilms, 'rt_score', 'desc').slice(0, 10);
+        sortedData.forEach(film => {
+            // Show Films
+            const container = document.createElement('section');
+            container.classList.add('container__card');
+            container.appendChild(cardTemplate(film));
+            topTen.appendChild(container);
+            //Show page film
+            container.addEventListener("click", () => {
+                load(film);
+            });
+        });
+}
+
+const load = ({people, locations, vehicles, ...information}) => {
+    deleteChilds(containerPeople);
+    deleteChilds(containerLocations);
+    deleteChilds(containerVehicles);
+    navigateTo('film');
+    addFilmInformation(information);
+    //addFilmPeople(people);
+    addFilmOthers(people, containerPeople, 'Characters');
+    if(locations.length !== 0){
+        containerLocations.classList.remove("disable");
+        addFilmOthers(locations, containerLocations, 'Locations');
+    }else{
+        containerLocations.classList.add("disable");
+    }
+    if(vehicles.length !== 0){
+        containerVehicles.classList.remove("disable");
+        addFilmOthers(vehicles, containerVehicles, 'Vehicles');
+    }else{
+        containerVehicles.classList.add("disable");
+    }
+}
+
 const cardTemplate = ({title, poster, name, img}) => {
     const template = document.getElementById("card").content,
     fragment = document.createDocumentFragment();
@@ -93,30 +134,45 @@ const cardTemplate = ({title, poster, name, img}) => {
 const addFilmInformation = (film) => {
     filmInformation.innerHTML = "";
     filmInformation.innerHTML = `
-        <h1 class='mainTitle'>${film.title}</h1>
-            <article class='container__text'>
-                <i class="fas fa-star"></i>
-                <p class='paragraph'>${film.rt_score}/100</p>
-            </article>
-            <article class='container__text'>
-                <h3 class='subtitle'>Release date: </h3>
-                <p class='paragraph'>${film.release_date}</p>
-            </article>
-            <article class='container__description'>
-                <p class='paragraph'>${film.description}</p>
-            </article>
-            <section class='container__directorProducer'>
+        <section class='divison'>
+            <h1 class='mainTitle'>${film.title}</h1>
+            <section class='container__row'>
                 <article class='container__text'>
-                    <h3 class='subtitle'>Producer: </h3>
-                    <p class='paragraph'> ${film.producer}</p>
+                    <div class="starEmpty">
+                        <div class="starFull" style='width:${film.rt_score}%'></div>
+                    </div>
+                    <p class='paragraph'>${film.rt_score}/100</p>
                 </article>
-            <article class='container__text'>
-                <h3 class='subtitle'>Director: </h3>
-                <p class='paragraph'> ${film.director}</p>
-            </article>
+                <article class='container__text'>
+                    <h3 class='subtitle'>Release date: </h3>
+                    <p class='paragraph'>${film.release_date}</p>
+                </article>
             </section>
+                <article class='container__description'>
+                    <p class='paragraph'>${film.description}</p>
+                </article>
+                <section class='container__row'>
+                    <article class='container__text'>
+                        <h3 class='subtitle'>Producer: </h3>
+                        <p class='paragraph'> ${film.producer}</p>
+                    </article>
+                <article class='container__text'>
+                    <h3 class='subtitle'>Director: </h3>
+                    <p class='paragraph'> ${film.director}</p>
+                </article>
+                </section>
+        </section>
+        <section class='film__poster'>
             <img class="film__image" src='${film.poster}'loading='lazy'>
+        </section>
         `;
+        /*const rating = data.films.forEach(film=>{
+            film.rt_score;
+            //console.log(film.rt_score)
+            const percentageRounded = `${Math.round(film.rt_score/10)*10}%`;
+            console.log(percentageRounded);
+            document.querySelector("#starFull").style.width = percentageRounded;
+        });*/
 }
 /*
 const addFilmPeople = (people) => {
@@ -294,6 +350,7 @@ const addFilterBy = (filter, data, condition = 'DirectorProducer') => {
 document.addEventListener('DOMContentLoaded', () => {
     showDataFilms(allDataFilms);
     addFilterBy(filterByDirectorProducer, allDataFilms);
+    showTopTen();
 });
 
 //Menu Toggle navegation
@@ -305,14 +362,15 @@ menuBurguer.addEventListener("click", () => {
 document.querySelectorAll(".menu__item").forEach((link) => {
     link.addEventListener("click",(e)=>{
         e.preventDefault();
-        navigateTo(link.getAttribute("href").slice(1));
+        pageReturn = link.getAttribute("href").slice(1);
+        navigateTo(pageReturn);
         menuBurguer.classList.toggle("fa-times");
         menuDropdown.classList.toggle("disable");
     });
 });
 
 returnBack.addEventListener("click", () => {
-    navigateTo('home');
+    navigateTo(pageReturn);
 });
 
 searchFilms.addEventListener('keyup', () => {

@@ -124,7 +124,7 @@ export default {
         {
           "id": "b22a684f-1819-40c8-94a6-d40c3b5e18eb",
           "name": "Okami",
-          "img": "http://static.wikia.nocookie.net/studio-ghibli/images/6/65/Okami.jpg",
+          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/6/65/Okami.jpg",
           "gender": "Female",
           "age": "50",
           "eye_color": "Dark brown",
@@ -841,7 +841,7 @@ export default {
         {
           "id": "718f634a-ea92-4907-a262-5a71a0661dcd",
           "name": "Oroku",
-          "img": "http://static.wikia.nocookie.net/studio-ghibli/images/0/07/Oroku.jpg",
+          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/0/07/Oroku.jpg",
           "gender": "Female",
           "age": "Elder",
           "eye_color": "Black",
@@ -1507,7 +1507,7 @@ export default {
         {
           "id": "b73f58ab-454a-42d6-9812-63e8f235a388",
           "name": "Calcifer",
-          "img": "http://static.wikia.nocookie.net/studio-ghibli/images/2/2a/Calcifer.png",
+          "img": "https://static.wikia.nocookie.net/studio-ghibli/images/2/2a/Calcifer.png",
           "gender": "Male",
           "age": "NA",
           "eye_color": "Dark Brown",

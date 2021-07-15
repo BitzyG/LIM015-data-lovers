@@ -280,9 +280,10 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 }
 
 .mainTitle{
-    font-size: 25px;
+    font-size: 1.786rem;
     color:var(--color-secondary);
-    display: flex;
+    /*display: flex;*/
+    width:100%;
     margin: 1rem 0rem;
 }
 
@@ -418,6 +419,26 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     color: var(--color-secondary);
 }
 
+/* chart js */
+.sectionCharts{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 1rem;
+}
+
+.sectionChart{
+  width: 100%;
+  background: #D3F1FF;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.containerChart{
+  height: 20rem;
+}
+
 .disable{
     display: none;
 }
@@ -450,27 +471,23 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px){
     /* ******* Nav Bar ******* */
     .menu__dropdown{
         display: flex;
         width: auto;
         padding: 0;
     }
-
     .menu__list:first-child{
         border-top: none;
     }
-
     #menuBurguer{
         display: none;
     }
-
     /* ******* Menu Bar ******* */
     .filter__comboBox, .menuBar__search{
         min-width: 160px;
     }
-
     .container__people .filter__comboBox{
         min-width: 120px;
     }
@@ -486,6 +503,9 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     }
     .section{
         padding: 1rem 4rem;
+    }
+    .sectionChart{
+      width: 48%;
     }
 }
 

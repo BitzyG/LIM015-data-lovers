@@ -4,7 +4,8 @@ import {
     filterDataByDirectorProducer,
     filterDataBy,
     getDataFilterBy,
-    getNamesDirectorProducer
+    getNamesDirectorProducer,
+    counterData
 } from './data.js';
 import data from './data/ghibli/ghibli.js';
 
@@ -36,6 +37,7 @@ let pageReturn = 'home';
 let dataFilms = data.films;
 let sortOrder = 'asc';
 const allCharacters = [];
+const allLocations = [];
 
 allDataFilms.forEach(item => {
     item.people.forEach(person => {
@@ -43,7 +45,11 @@ allDataFilms.forEach(item => {
     });
 });
 
-//console.log(allCharacters);
+allDataFilms.forEach(item => {
+    item.locations.forEach(location => {
+        allLocations.push(location);
+    });
+});
 
 const deleteChilds = (container) => {
     while(container.lastChild){
@@ -154,7 +160,6 @@ const addFilmInformation = (film) => {
         `;
 }
 
-
 const addFilmPeople = (people) => {
     // Default Varibles characters
     let characters = people;
@@ -192,11 +197,7 @@ const addFilmPeople = (people) => {
     //Mostrar Character
     showCharacters(containerCharacters, characters, charactersCounter);
     filterCharacterBySpecie.addEventListener("change", ()=>{
-        if(filterCharacterBySpecie.value === 'all'){
-            characters = people;
-        }else{
-            characters = filterDataBy(people,'specie',filterCharacterBySpecie.value);
-        }
+        characters = (filterCharacterBySpecie.value === 'all')? people: filterDataBy(people,'specie', filterCharacterBySpecie.value);
         showCharacters(containerCharacters, characters, charactersCounter);
     })
 }
@@ -227,7 +228,6 @@ const addFilmSection = (data, containerFilmInformation, title) => {
 }
 
 // Show characters
-
 const showCharacters = (containerCharacters, characters, charactersCounter) => {
     deleteChilds(containerCharacters);
     const sortedCharacterData = sortData(characters, 'name', 'asc');
@@ -266,6 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
     showDataFilms(allDataFilms);
     addFilterBy(filterByDirectorProducer, allDataFilms);
     showTopTen();
+    addChart('gender', 'line', allCharacters);
+    addChart('specie', 'doughnut', allCharacters);
+    addChart('climate', 'doughnut', allLocations);
+    addChart('terrain', 'doughnut', allLocations);
 });
 
 //Menu Toggle navegation
@@ -308,3 +312,39 @@ orderData.addEventListener("click", () => {
     orderData.classList.toggle("fa-sort-amount-up-alt");
     showDataFilms(dataFilms);
 });
+
+const addChart = (title, typeChart, data) => {
+    const graph = document.querySelector(`#${title}`).getContext('2d');
+    const labelsChart = getDataFilterBy(data, title);
+    const dataChart = counterData(data, title, labelsChart);
+    const colors = ['#008ED2','#006596','#60B6DF','#1FA1E1','#00ADFF','#007DB9','#005077','#00354F',];
+    //eslint-disable-next-line
+    const chartGender = new Chart(graph, {
+        type: `${typeChart}`,
+        data: {
+          labels: labelsChart,
+          datasets: [{
+            label: `Average of ${title}`,
+            data: dataChart,
+            backgroundColor: colors,
+            borderColor: colors,
+            color: '#fff',
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          layout: {
+            padding: 3,
+          },
+          hoverRadius: 8,
+          /* plugins: {
+            legend: {
+              labels: {
+                color: '#fff',
+              }
+            }
+          } */
+        }
+    });
+}

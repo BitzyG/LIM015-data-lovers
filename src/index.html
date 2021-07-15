@@ -71,11 +71,40 @@
       </section>
       <section class="container disable" id="statistics">
         <section class="section">
-          <h1 class="mainTitle">Top 10</h1>
+          <h1 class="mainTitle">Top 10 films</h1>
           <section class="container__films" id="containerStatistics"></section>
         </section>
         <section class="section">
-          <!-- Estadisticas genero y especie de caracteres -->
+          <section class="sectionCharts">
+            <h1 class="mainTitle">Characters</h1>
+            <section class="sectionChart">
+              <h2 class="subtitle">Gender</h2>
+              <section class="containerChart">
+                <canvas class="canvasChart" id="gender"></canvas>
+              </section>
+            </section>
+            <section class="sectionChart">
+              <h2 class="subtitle">Specie</h2>
+              <section class="containerChart">
+                <canvas class="canvasChart" id="specie"></canvas>
+              </section>
+            </section>
+          </section>
+          <section class="sectionCharts">
+            <h1 class="mainTitle">Locations</h1>
+            <section class="sectionChart">
+              <h2 class="subtitle">Average types of climate</h2>
+              <section class="containerChart">
+                <canvas class="canvasChart" id="climate"></canvas>
+              </section>
+            </section>
+            <section class="sectionChart">
+              <h2 class="subtitle">Average types of terrain</h2>
+              <section class="containerChart">
+                <canvas class="canvasChart" id="terrain"></canvas>
+              </section>
+            </section>
+          </section>
         </section>
       </section>
     </main>
@@ -108,6 +137,7 @@
     </template>
     <template id="filmSection">
     </template>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
     <script src="main.js" type="module"></script>
   </body>
 </html>

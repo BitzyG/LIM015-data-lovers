@@ -27,6 +27,14 @@ export const getDataFilterBy = (data, condition) => {
   return deleteDataDuplicates(dataFilters);
 }
 
+export const counterData = (data, condition, values) => {
+  const counter = [];
+  for(let value of values) {
+    counter.push(filterDataBy(data, condition, value).length)
+  }
+  return counter;
+}
+
 export const getNamesDirectorProducer = (films) => {
   const namesDirectorProducer = [];
   films.forEach(film => {

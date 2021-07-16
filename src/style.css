@@ -320,8 +320,9 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
 }
 
 .container__text{
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
 }
 
 .subtitle{
@@ -443,6 +444,114 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
     display: none;
 }
 
+/******************* Container-modal ***************/
+
+.modalContainer{
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.containerClose{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal{
+  background-color: var(--color-main);
+  width: 80%;
+  max-width: 900px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 10px;
+  padding: 0.5rem;
+  animation: open 0.5s forwards;
+}
+
+.modalClose{
+  animation: close 0.5s forwards;
+}
+
+#close{
+  margin: 5px 5px 0px 0px;
+  align-self: flex-end;
+  width: 25px;
+  height:  25px;
+  background-color: transparent;
+  font-size: 1.5rem;
+  color: var(--color-white);
+  line-height: 25px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.modalContent{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 1em;
+}
+
+.divide {
+  width: 100%;
+  padding: 0.5em 2em;
+  display: flex;
+  flex-flow: column wrap;
+  place-content: center center;
+}
+
+.divide .card__image {
+  height: 10rem;
+  max-width: 10rem;
+}
+
+/* Modal Animation*/
+@keyframes open{
+  0%{
+      transform: scale(0);
+  }
+  50%{
+      transform: scale(1.2);
+  }
+  70%{
+      transform: scale(0.95);
+  }
+  95%{
+      transform: scale(1.1);
+  }
+  100%{
+      transform: scale(1);
+  }
+}
+
+@keyframes close{
+  100%{
+      transform: translateY(-100vh) scale(0);
+  }
+  50%{
+      transform: scale(1.2);
+  }
+  30%{
+      transform: scale(0.95);
+  }
+  5%{
+      transform: scale(1.1);
+  }
+  0%{
+      transform: scale(1);
+  }
+}
+
 @media (min-width: 540px){
     .menuBar {
         flex-flow: row wrap;
@@ -468,6 +577,13 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:active{
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+    }
+    .modal{
+      width: 50%;
+    }
+    .divide {
+      width: 50%;
+      padding: 0em 2em;
     }
 }
 

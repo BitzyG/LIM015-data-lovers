@@ -1,4 +1,4 @@
-import { searchData, sortData, filterDataByDirectorProducer, filterDataBy, getDataFilterBy, getNamesDirectorProducer } from '../src/data.js';
+import { searchData, sortData, filterDataByDirectorProducer, filterDataBy, getDataFilterBy, getNamesDirectorProducer, counterData } from '../src/data.js';
 
 describe('search by film test', () => {
   it('is a function', () => {
@@ -17,14 +17,12 @@ describe('search by film test', () => {
         "title": "Only Yesterday",
       }
     ];
-    const condition = 'title';
-    const value = 'castle';
     const result = [
       {
         "title": "Castle in the Sky",
       }
     ];
-    expect(searchData(data, condition, value)).toEqual(result);
+    expect(searchData(data, 'title', 'castle')).toEqual(result);
   });
 });
 
@@ -48,7 +46,6 @@ describe('filter by director or producer test', () => {
         "producer": "Toshio Suzuki",
       }
     ];
-    const condition = 'Hayao Miyazaki';
     const result = [
       {
         "director": "Hayao Miyazaki",
@@ -59,7 +56,7 @@ describe('filter by director or producer test', () => {
         "producer": "Isao Takahata",
       }
     ];
-    expect(filterDataByDirectorProducer(data,condition)).toEqual(result);
+    expect(filterDataByDirectorProducer(data,'Hayao Miyazaki')).toEqual(result);
   });
 });
 
@@ -80,8 +77,6 @@ describe('orderBy test', () => {
         "rt_score": "95",
       }
     ];
-    const sortBy = 'rt_score';
-    const sortOrder = 'desc';
     const result = [
       {
         "rt_score": "96",
@@ -93,7 +88,7 @@ describe('orderBy test', () => {
         "rt_score": "93",
       }
     ];
-    expect(sortData(data,sortBy,sortOrder)).toEqual(result);
+    expect(sortData(data,'rt_score','desc')).toEqual(result);
   });
 
   it('returns `asc orderBy test`', () => {
@@ -142,8 +137,6 @@ describe('filter Data By test', () => {
         "gender": "Female",
       }
     ];
-    const condition = 'gender';
-    const value = 'Female';
     const result = [
       {
         "gender": "Female",
@@ -152,7 +145,7 @@ describe('filter Data By test', () => {
         "gender": "Female",
       }
     ];
-    expect(filterDataBy(data,condition,value)).toEqual(result);
+    expect(filterDataBy(data,'gender','Female')).toEqual(result);
   });
 });
 
@@ -176,9 +169,8 @@ describe('get Data Filter By test', () => {
         "specie": "Human"
       },
     ];
-    const condition = 'gender';
     const result = ["Male", "Female"];
-    expect(getDataFilterBy(data, condition)).toEqual(result);
+    expect(getDataFilterBy(data, 'gender')).toEqual(result);
   });
 });
 
@@ -200,5 +192,33 @@ describe('get Names Director and Producer Test', () => {
     ];
     const result = ["Hayao Miyazaki", "Isao Takahata"];
     expect(getNamesDirectorProducer(data)).toEqual(result);
+  });
+});
+
+describe('counter Data Test', () => {
+  it('is a function', () => {
+    expect(typeof counterData).toBe('function');
+  });
+
+  it('should return quantity of data', () => {
+    const data = [
+      {
+        "gender": "Female",
+      },
+      {
+        "gender": "Male",
+      },
+      {
+        "gender": "Female",
+      },
+      {
+        "gender": "Male",
+      },
+      {
+        "gender": "Female",
+      }
+    ];
+    const result = [3,2];
+    expect(counterData(data, 'gender', ['Female','Male'])).toEqual(result);
   });
 });
